@@ -23,11 +23,9 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = '9_^99om!qw@m(@eg$lgka62137yefda7v(u(y)_woxr26xcij6'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
-TWILIO_ACCOUNT_SID = 'AC18e1e307ee31157bc6fbff6a0e82cc73'
-TWILIO_AUTH_TOKEN = 'f89de917de3b49c8df9ba5fe427f594b'
+DEBUG = False
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 
 # Application definition
 JET_SIDE_MENU_COMPACT = True
