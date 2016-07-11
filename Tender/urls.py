@@ -20,6 +20,7 @@ from django.conf import settings
 from tastypie.api import Api
 from simple_app.api import *
 from point.api import *
+from forum.api import *
 
 v1_api = Api(api_name='v1')
 v1_api.register(RulesOfIncomingResource())
@@ -28,6 +29,10 @@ v1_api.register(HotlineResource())
 v1_api.register(FaqResource())
 v1_api.register(EmbassyResource())
 v1_api.register(ConsulateResource())
+v1_api.register(UserResource())
+v1_api.register(CommentResource())
+v1_api.register(QuestionResource())
+v1_api.register(StoryResource())
 
 
 urlpatterns = [

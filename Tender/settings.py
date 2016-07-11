@@ -47,7 +47,6 @@ INSTALLED_APPS = [
     'point',
     'lxml',
     'defusedxml',
-    'django_twilio',
 ]
 JET_DEFAULT_THEME = 'green'
 
