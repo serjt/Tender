@@ -28,13 +28,13 @@ class FAQAdmin(admin.ModelAdmin):
 
 class RulesOfIncomingInline(admin.StackedInline):
     model = RulesOfIncomingKy
-    fields = 'title_ky text_ky'.split()
+    fields = 'image title_ky text_ky'.split()
     extra = 1
 
 
 class RulesOfIncomingAdmin(admin.ModelAdmin):
     list_display = '__unicode__ created_at updated_at'.split()
-    fields = 'title_ru text_ru created_at updated_at'.split()
+    fields = 'image title_ru text_ru created_at updated_at'.split()
     readonly_fields = 'created_at updated_at'.split()
     list_filter = 'updated_at'.split()
     inlines = [RulesOfIncomingInline]
@@ -42,13 +42,13 @@ class RulesOfIncomingAdmin(admin.ModelAdmin):
 
 class RulesOfMigrationInline(admin.StackedInline):
     model = RulesOfMigrationKy
-    fields = 'title_ky text_ky'.split()
+    fields = 'image title_ky text_ky'.split()
     extra = 1
 
 
 class RulesOfMigrationAdmin(admin.ModelAdmin):
     list_display = '__unicode__ created_at updated_at'.split()
-    fields = 'title_ru text_ru created_at updated_at'.split()
+    fields = 'image title_ru text_ru created_at updated_at'.split()
     readonly_fields = 'created_at updated_at'.split()
     list_filter = 'updated_at'.split()
     inlines = [RulesOfMigrationInline]

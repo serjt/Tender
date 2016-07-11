@@ -56,7 +56,7 @@ class RulesOfIncomingKy(models.Model):
     class Meta:
         verbose_name = 'Келүү эреже'
         verbose_name_plural = 'Келүү эреже'
-
+    image = models.ImageField(upload_to=image_upload_to, verbose_name='Сүрөт', null=True)
     title_ky = models.CharField(max_length=1000, verbose_name='Аталыш')
     text_ky = models.TextField(verbose_name='Баяндоо')
     translit = models.OneToOneField(RulesOfIncoming)
@@ -95,7 +95,7 @@ class RulesOfMigrationKy(models.Model):
     class Meta:
         verbose_name = 'Сыртка чыгуу эреже'
         verbose_name_plural = 'Сыртка чыгуу эреже'
-
+    image = models.ImageField(upload_to=image_upload_to, verbose_name='Сүрөт', null=True)
     title_ky = models.CharField(max_length=1000, verbose_name='Аталыш')
     text_ky = models.TextField(verbose_name='Баяндоо')
     translit = models.OneToOneField(RulesOfMigration)
