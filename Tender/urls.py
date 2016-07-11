@@ -23,6 +23,7 @@ from point.api import *
 from forum.api import *
 
 v1_api = Api(api_name='v1')
+v1_api.register(NewsResource())
 v1_api.register(RulesOfIncomingResource())
 v1_api.register(RulesOfMigrationResource())
 v1_api.register(HotlineResource())

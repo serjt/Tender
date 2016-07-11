@@ -4,6 +4,12 @@ from tastypie import fields
 from tastypie.resources import ModelResource, ALL, ALL_WITH_RELATIONS
 
 
+class NewsResource(ModelResource):
+    class Meta:
+        queryset = News.objects.all()
+        resource_name = 'news'
+
+
 class RulesOfIncomingKyResource(ModelResource):
     class Meta:
         queryset = RulesOfIncomingKy.objects.all()
