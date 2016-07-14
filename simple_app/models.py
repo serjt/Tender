@@ -38,6 +38,7 @@ class RulesOfIncoming(models.Model):
     title_ru = models.CharField(max_length=1000, verbose_name='Заголовок')
     text_ru = RedactorField(verbose_name='Текст',
                             upload_to=image_upload_to,
+                            redactor_options={'buttons': ['image'],},
                             allow_image_upload=True,
                             allow_file_upload=True)
     created_at = models.DateTimeField(auto_now_add=True, verbose_name='Дата создания')
@@ -58,7 +59,11 @@ class RulesOfIncomingKy(models.Model):
         verbose_name_plural = 'Келүү эреже'
     image = models.ImageField(upload_to=image_upload_to, verbose_name='Сүрөт', null=True)
     title_ky = models.CharField(max_length=1000, verbose_name='Аталыш')
-    text_ky = models.TextField(verbose_name='Баяндоо')
+    text_ky = RedactorField(verbose_name='Баяндоо',
+                            upload_to=image_upload_to,
+                            redactor_options={'buttons': ['image'],},
+                            allow_image_upload=True,
+                            allow_file_upload=True)
     translit = models.OneToOneField(RulesOfIncoming)
 
     def save(self, *args, **kwargs):
@@ -78,7 +83,11 @@ class RulesOfMigration(models.Model):
 
     image = models.ImageField(upload_to=image_upload_to, verbose_name='Иконка')
     title_ru = models.CharField(max_length=1000, verbose_name='Заголовок')
-    text_ru = models.TextField(verbose_name='Текст')
+    text_ru = RedactorField(verbose_name='Баяндоо',
+                            upload_to=image_upload_to,
+                            redactor_options={'buttons': ['image'],},
+                            allow_image_upload=True,
+                            allow_file_upload=True)
     created_at = models.DateTimeField(auto_now_add=True, verbose_name='Дата создания')
     updated_at = models.DateTimeField(auto_now=True, verbose_name='Дата изменения')
     translit = models.OneToOneField('RulesOfMigrationKy', null=True)
@@ -97,7 +106,11 @@ class RulesOfMigrationKy(models.Model):
         verbose_name_plural = 'Сыртка чыгуу эреже'
     image = models.ImageField(upload_to=image_upload_to, verbose_name='Сүрөт', null=True)
     title_ky = models.CharField(max_length=1000, verbose_name='Аталыш')
-    text_ky = models.TextField(verbose_name='Баяндоо')
+    text_ky = RedactorField(verbose_name='Баяндоо',
+                            upload_to=image_upload_to,
+                            redactor_options={'buttons': ['image'],},
+                            allow_image_upload=True,
+                            allow_file_upload=True)
     translit = models.OneToOneField(RulesOfMigration)
 
     def save(self, *args, **kwargs):
