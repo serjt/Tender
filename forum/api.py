@@ -1,20 +1,27 @@
+from sqlite3 import IntegrityError
+
+from tastypie.exceptions import BadRequest
 from tastypie.resources import ModelResource, ALL_WITH_RELATIONS
 from tastypie import fields
-from tastypie.paginator import Paginator
 from .models import *
-
-
-class PageNumberPaginator(Paginator):
-    def page(self):
-        output = super(PageNumberPaginator, self).page()
-        output['page_number'] = int(self.offset / self.limit) + 1
-        return output
+from tastypie.authorization import Authorization
 
 
 class UserResource(ModelResource):
     class Meta:
         queryset = User.objects.all()
         resource_name = 'user'
+        Authorization=Authorization()
+        allowed_methods = ['get', 'post', 'put', 'delete']
+
+    def obj_create(self, bundle, request=None, **kwargs):
+
+        username, password = bundle.data['username'], bundle.data['password']
+        try:
+            bundle.obj = User.objects.create_user(username, '', password)
+        except IntegrityError:
+            raise BadRequest('That username already exists')
+        return bundle
 
 
 class StoryResource(ModelResource):
@@ -26,7 +33,7 @@ class StoryResource(ModelResource):
         filtering = {
             'id': ALL_WITH_RELATIONS
         }
-        paginator_class = PageNumberPaginator
+        allowed_methods = ['get', 'post', 'put', 'delete']
 
 
 class QuestionResource(ModelResource):
@@ -38,6 +45,7 @@ class QuestionResource(ModelResource):
         filtering = {
             'id': ALL_WITH_RELATIONS
         }
+        allowed_methods = ['get', 'post', 'put', 'delete']
 
 
 class CommentResource(ModelResource):
@@ -50,3 +58,4 @@ class CommentResource(ModelResource):
         filtering = {
             'id': ALL_WITH_RELATIONS
         }
+        allowed_methods = ['get', 'post', 'put', 'delete']
