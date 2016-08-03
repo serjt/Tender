@@ -8,23 +8,12 @@ from django.db.models import signals
 from tastypie.models import create_api_key
 
 
-# class UserProfile(models.Model):
-#     """
-#     A model to store extra information for each user.
-#     """
-#     user = models.OneToOneField(User, related_name='profile')
-#     phone_number = models.CharField(max_length=100)
-#
-#     def __unicode__(self):
-#         return self.user.get_full_name()
-
-
 class Story(models.Model):
     class Meta:
         verbose_name = 'историю из жизни'
         verbose_name_plural = 'Истории из жизни'
 
-    user = models.ForeignKey(User, verbose_name='Пользователь')
+    user = models.ForeignKey(User, verbose_name='Пользователь',null=True,blank=True)
     title = models.CharField(max_length=100, verbose_name='Заголовок')
     text = models.TextField(verbose_name='Текст')
     publish = models.BooleanField(verbose_name='Опубликовать')
