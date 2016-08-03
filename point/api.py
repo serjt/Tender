@@ -8,7 +8,9 @@ class EmbassyResource(ModelResource):
         queryset = Embassy.objects.all()
         resource_name = 'embassy'
         filtering = {
-            'id':ALL_WITH_RELATIONS
+            'id':ALL_WITH_RELATIONS,
+            'country':ALL
+
         }
 
 
@@ -21,5 +23,4 @@ class ConsulateResource(ModelResource):
         resource_name = 'consulate'
         filtering = {
             'embassy':ALL_WITH_RELATIONS,
-            'country':ALL
         }

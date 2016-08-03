@@ -9,7 +9,7 @@ class NewsResource(ModelResource):
         queryset = News.objects.all()
         resource_name = 'news'
         filtering = {
-            'title':ALL
+            'title_ru':ALL
         }
 
 
