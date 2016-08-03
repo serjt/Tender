@@ -21,4 +21,5 @@ class ConsulateResource(ModelResource):
         resource_name = 'consulate'
         filtering = {
             'embassy':ALL_WITH_RELATIONS,
+            'country':ALL
         }

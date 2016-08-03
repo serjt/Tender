@@ -8,6 +8,9 @@ class NewsResource(ModelResource):
     class Meta:
         queryset = News.objects.all()
         resource_name = 'news'
+        filtering = {
+            'title':ALL
+        }
 
 
 class RulesOfIncomingKyResource(ModelResource):
