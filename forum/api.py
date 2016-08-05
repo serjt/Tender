@@ -14,6 +14,7 @@ class UserResource(ModelResource):
         authorization = Authorization()
         allowed_methods = ['get', 'post', 'put', 'delete']
         filtering = {
+            'id':ALL,
             'username': ALL_WITH_RELATIONS,
             'password': ALL_WITH_RELATIONS,
             'email': ALL_WITH_RELATIONS,
@@ -50,7 +51,8 @@ class QuestionResource(ModelResource):
         queryset = Question.objects.order_by('created_at')
         resource_name = 'question'
         filtering = {
-            'id': ALL
+            'id': ALL,
+            'user':ALL_WITH_RELATIONS
         }
         allowed_methods = ['get', 'post', 'put', 'delete']
         authorization = Authorization()
@@ -64,7 +66,9 @@ class CommentResource(ModelResource):
         queryset = Comment.objects.order_by('created_at')
         resource_name = 'comment'
         filtering = {
-            'id': ALL
+            'id': ALL,
+            'question':ALL_WITH_RELATIONS,
+            'user':ALL_WITH_RELATIONS,
         }
         allowed_methods = ['get', 'post', 'put', 'delete']
         authorization = Authorization()
