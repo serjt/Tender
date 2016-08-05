@@ -71,5 +71,6 @@ class CommentResource(ModelResource):
             'user':ALL_WITH_RELATIONS,
         }
         allowed_methods = ['get', 'post', 'put', 'delete']
+
         authorization = Authorization()
 
