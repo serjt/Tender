@@ -81,7 +81,7 @@ class StoryCommentResource(ModelResource):
     question = fields.ForeignKey(StoryResource, 'story', full=True, null=True)
 
     class Meta:
-        queryset = Comment.objects.order_by('created_at')
+        queryset = StoryComment.objects.order_by('created_at')
         resource_name = 'story_comment'
         filtering = {
             'id': ALL,
