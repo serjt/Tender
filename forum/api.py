@@ -38,7 +38,8 @@ class StoryResource(ModelResource):
         resource_name = 'story'
         filtering = {
             'id': ALL,
-            'user': ALL_WITH_RELATIONS
+            'user': ALL_WITH_RELATIONS,
+            'category':ALL
         }
         allowed_methods = ['get', 'post', 'put', 'delete']
         authorization = Authorization()
@@ -65,6 +66,23 @@ class CommentResource(ModelResource):
     class Meta:
         queryset = Comment.objects.order_by('created_at')
         resource_name = 'comment'
+        filtering = {
+            'id': ALL,
+            'question':ALL_WITH_RELATIONS,
+            'user':ALL_WITH_RELATIONS,
+        }
+        allowed_methods = ['get', 'post', 'put', 'delete']
+
+        authorization = Authorization()
+
+
+class StoryCommentResource(ModelResource):
+    user = fields.ForeignKey(UserResource, 'user', full=True, null=True)
+    question = fields.ForeignKey(StoryResource, 'story', full=True, null=True)
+
+    class Meta:
+        queryset = Comment.objects.order_by('created_at')
+        resource_name = 'story_comment'
         filtering = {
             'id': ALL,
             'question':ALL_WITH_RELATIONS,

@@ -1,12 +1,22 @@
 from django.contrib import admin
 from .models import *
+
+
 # Register your models here.
 
 
-class StoryAdmin(admin.ModelAdmin):
-    fields = 'user title text publish created_at updated_at'.split()
+class StoryCommentInline(admin.StackedInline):
+    model = StoryComment
+    fields = 'user answer created_at updated_at'.split()
     readonly_fields = 'created_at updated_at'.split()
-    list_display = '__unicode__ publish'.split()
+    extra = 1
+
+
+class StoryAdmin(admin.ModelAdmin):
+    fields = 'user title text category created_at updated_at'.split()
+    readonly_fields = 'created_at updated_at'.split()
+    list_display = '__unicode__'.split()
+    inlines = [StoryCommentInline]
 
 
 class CommentInline(admin.StackedInline):
@@ -17,9 +27,10 @@ class CommentInline(admin.StackedInline):
 
 
 class QuestionAdmin(admin.ModelAdmin):
-    fields = 'user question created_at updated_at'.split()
+    fields = 'user question category created_at updated_at'.split()
     readonly_fields = 'created_at updated_at'.split()
     inlines = [CommentInline]
 
-admin.site.register(Story,StoryAdmin)
-admin.site.register(Question,QuestionAdmin)
+
+admin.site.register(Story, StoryAdmin)
+admin.site.register(Question, QuestionAdmin)
