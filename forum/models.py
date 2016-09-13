@@ -15,7 +15,7 @@ class Story(models.Model):
 
     user = models.ForeignKey(User, verbose_name='Пользователь', null=True, blank=True)
     title = models.CharField(max_length=100, verbose_name='Заголовок')
-    category = models.CharField(max_length=100)
+    category = models.CharField(max_length=100,null=True)
     text = models.TextField(verbose_name='Текст')
     created_at = models.DateTimeField(auto_now_add=True, verbose_name='Дата создания', null=True)
     updated_at = models.DateTimeField(auto_now=True, verbose_name='Дата изменения', null=True)
@@ -46,7 +46,7 @@ class Question(models.Model):
 
     user = models.ForeignKey(User, verbose_name='Пользователь')
     question = models.TextField(verbose_name='Вопрос')
-    category = models.CharField(max_length=100)
+    category = models.CharField(max_length=100,null=True)
     created_at = models.DateTimeField(auto_now_add=True, verbose_name='Дата создания', null=True)
     updated_at = models.DateTimeField(auto_now=True, verbose_name='Дата изменения', null=True)
 
