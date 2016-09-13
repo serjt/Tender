@@ -34,6 +34,7 @@ v1_api.register(UserResource())
 v1_api.register(CommentResource())
 v1_api.register(QuestionResource())
 v1_api.register(StoryResource())
+v1_api.register(StoryCommentResource())
 
 
 urlpatterns = [
