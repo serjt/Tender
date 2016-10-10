@@ -53,7 +53,8 @@ class QuestionResource(ModelResource):
         resource_name = 'question'
         filtering = {
             'id': ALL,
-            'user':ALL_WITH_RELATIONS
+            'user':ALL_WITH_RELATIONS,
+            'category':ALL
         }
         allowed_methods = ['get', 'post', 'put', 'delete']
         authorization = Authorization()
