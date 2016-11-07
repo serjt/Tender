@@ -29,12 +29,24 @@ class News(models.Model):
         return 'title_ru'
 
 
-class RulesOfIncoming(models.Model):
+class Country(models.Model):
     class Meta:
-        verbose_name = 'правило пребывания'
-        verbose_name_plural = 'Правила пребывания'
+        verbose_name = 'правило пребывания в ЕАЭС'
+        verbose_name_plural = 'Правила пребывания в ЕАЭС'
 
+    country = models.CharField(max_length=100, verbose_name='Страна')
     image = models.ImageField(upload_to=image_upload_to, verbose_name='Иконка')
+
+    def __unicode__(self):
+        return self.country
+
+
+class RulesOfIncomingEAES(models.Model):
+    class Meta:
+        verbose_name = 'правило пребывания в ЕАЭС'
+        verbose_name_plural = 'Правила пребывания в ЕАЭС'
+
+    country = models.ForeignKey(Country, null=True, blank=True)
     title_ru = models.CharField(max_length=1000, verbose_name='Заголовок')
     text_ru = RedactorField(verbose_name='Текст',
                             upload_to=image_upload_to,
@@ -43,7 +55,6 @@ class RulesOfIncoming(models.Model):
                             allow_file_upload=True)
     created_at = models.DateTimeField(auto_now_add=True, verbose_name='Дата создания')
     updated_at = models.DateTimeField(auto_now=True, verbose_name='Дата изменения')
-    translit = models.OneToOneField('RulesOfIncomingKy', null=True)
 
     def __unicode__(self):
         return self.title_ru
@@ -53,10 +64,77 @@ class RulesOfIncoming(models.Model):
         return 'title_ru'
 
 
+class CountryAll(models.Model):
+    class Meta:
+        verbose_name = 'правило пребывания'
+        verbose_name_plural = 'Правила пребывания'
+
+    country = models.CharField(max_length=100, verbose_name='Страна')
+    image = models.ImageField(upload_to=image_upload_to, verbose_name='Иконка')
+
+    def __unicode__(self):
+        return self.country
+
+
+class RulesOfIncoming(models.Model):
+    class Meta:
+        verbose_name = 'правило пребывания'
+        verbose_name_plural = 'Правила пребывания'
+
+    country = models.ForeignKey(CountryAll, null=True, blank=True)
+    title_ru = models.CharField(max_length=1000, verbose_name='Заголовок')
+    text_ru = RedactorField(verbose_name='Текст',
+                            upload_to=image_upload_to,
+                            redactor_options={'buttons': ['image'],},
+                            allow_image_upload=True,
+                            allow_file_upload=True)
+    created_at = models.DateTimeField(auto_now_add=True, verbose_name='Дата создания')
+    updated_at = models.DateTimeField(auto_now=True, verbose_name='Дата изменения')
+
+    def __unicode__(self):
+        return self.title_ru
+
+    @staticmethod
+    def autocomplete_search_fields():
+        return 'title_ru'
+
+
+class Countries(models.Model):
+    class Meta:
+        verbose_name = 'Трудоустройство'
+        verbose_name_plural = 'Трудоустройство'
+
+    country = models.CharField(max_length=100, verbose_name='Страна')
+    image = models.ImageField(upload_to=image_upload_to, verbose_name='Иконка')
+
+    def __unicode__(self):
+        return self.country
+
+
+class Employment(models.Model):
+    class Meta:
+        verbose_name = 'Трудоустройство'
+        verbose_name_plural = 'Трудоустройство'
+
+    country = models.ForeignKey(Countries, null=True)
+    name = models.CharField(max_length=1000, verbose_name='Заголовок')
+    manager = models.CharField(max_length=1000, verbose_name='Менеджер')
+    created_at = models.DateTimeField(auto_now_add=True, verbose_name='Дата создания')
+    updated_at = models.DateTimeField(auto_now=True, verbose_name='Дата изменения')
+    address = models.TextField(verbose_name='Адрес')
+    phone_number = models.CharField(max_length=100, verbose_name='Номер телефона')
+    phone_number_1 = models.CharField(max_length=100, verbose_name='Экстра номер 1', null=True, blank=True)
+    phone_number_2 = models.CharField(max_length=100, verbose_name='Экстра номер 2', null=True, blank=True)
+
+    def __unicode__(self):
+        return self.name
+
+
 class RulesOfIncomingKy(models.Model):
     class Meta:
         verbose_name = 'Келүү эреже'
         verbose_name_plural = 'Келүү эреже'
+
     image = models.ImageField(upload_to=image_upload_to, verbose_name='Сүрөт', null=True)
     title_ky = models.CharField(max_length=1000, verbose_name='Аталыш')
     text_ky = RedactorField(verbose_name='Баяндоо',
@@ -78,8 +156,8 @@ class RulesOfIncomingKy(models.Model):
 
 class RulesOfMigration(models.Model):
     class Meta:
-        verbose_name = 'правило выезда'
-        verbose_name_plural = 'Правила выезда'
+        verbose_name = 'торговля людьми'
+        verbose_name_plural = 'торговля людьми'
 
     image = models.ImageField(upload_to=image_upload_to, verbose_name='Иконка')
     title_ru = models.CharField(max_length=1000, verbose_name='Заголовок')
@@ -90,7 +168,25 @@ class RulesOfMigration(models.Model):
                             allow_file_upload=True)
     created_at = models.DateTimeField(auto_now_add=True, verbose_name='Дата создания')
     updated_at = models.DateTimeField(auto_now=True, verbose_name='Дата изменения')
-    translit = models.OneToOneField('RulesOfMigrationKy', null=True)
+
+    def __unicode__(self):
+        return self.title_ru
+
+
+class RF(models.Model):
+    class Meta:
+        verbose_name = 'Запрет въезда в РФ'
+        verbose_name_plural = 'Запрет въезда в РФ'
+
+    image = models.ImageField(upload_to=image_upload_to, verbose_name='Иконка')
+    title_ru = models.CharField(max_length=1000, verbose_name='Заголовок')
+    text_ru = RedactorField(verbose_name='Баяндоо',
+                            upload_to=image_upload_to,
+                            redactor_options={'buttons': ['image'],},
+                            allow_image_upload=True,
+                            allow_file_upload=True)
+    created_at = models.DateTimeField(auto_now_add=True, verbose_name='Дата создания')
+    updated_at = models.DateTimeField(auto_now=True, verbose_name='Дата изменения')
 
     def __unicode__(self):
         return self.title_ru
@@ -98,29 +194,6 @@ class RulesOfMigration(models.Model):
     @staticmethod
     def autocomplete_search_fields():
         return 'title_ru'
-
-
-class RulesOfMigrationKy(models.Model):
-    class Meta:
-        verbose_name = 'Сыртка чыгуу эреже'
-        verbose_name_plural = 'Сыртка чыгуу эреже'
-    image = models.ImageField(upload_to=image_upload_to, verbose_name='Сүрөт', null=True)
-    title_ky = models.CharField(max_length=1000, verbose_name='Аталыш')
-    text_ky = RedactorField(verbose_name='Баяндоо',
-                            upload_to=image_upload_to,
-                            redactor_options={'buttons': ['image'],},
-                            allow_image_upload=True,
-                            allow_file_upload=True)
-    translit = models.OneToOneField(RulesOfMigration)
-
-    def save(self, *args, **kwargs):
-        super(RulesOfMigrationKy, self).save()
-        rules_of_migration = RulesOfMigration.objects.get(id=self.translit_id)
-        rules_of_migration.translit_id = self.id
-        rules_of_migration.save()
-
-    def __unicode__(self):
-        return self.title_ky
 
 
 class FAQ(models.Model):
@@ -147,8 +220,8 @@ class FAQky(models.Model):
     question_ky = models.TextField(verbose_name='Суроо')
     answer_ky = models.TextField(verbose_name='Жооп')
 
-    def save(self, *args,**kwargs):
-        super(FAQky,self).save()
+    def save(self, *args, **kwargs):
+        super(FAQky, self).save()
         faq = FAQ.objects.get(id=self.translit_id)
         faq.translit_id = self.id
         faq.save()
@@ -159,25 +232,11 @@ class Hotline(models.Model):
         verbose_name = 'горячую линию'
         verbose_name_plural = 'Горячие линии'
 
+    image = models.ImageField(upload_to=image_upload_to, verbose_name='Иконка')
+    country = models.CharField(max_length=100, verbose_name='Страна')
     title_ru = models.CharField(max_length=1000, verbose_name='Название горячей линии')
     text_ru = models.TextField(verbose_name='Описание')
     phone_number = models.CharField(max_length=100, verbose_name='Номер телефона')
-    translit = models.OneToOneField('HotlineKy',null=True)
 
     def __unicode__(self):
         return self.title_ru
-
-
-class HotlineKy(models.Model):
-    class Meta:
-        verbose_name_plural = 'hotline'
-
-    translit = models.OneToOneField(Hotline, null=True)
-    title_ky = models.CharField(max_length=1000, verbose_name='Hotline')
-    text_ky = models.TextField(verbose_name='Баяндоо')
-
-    def save(self, *args,**kwargs):
-        super(HotlineKy,self).save()
-        hotline = Hotline.objects.get(id = self.translit_id)
-        hotline.translit_id = self.id
-        hotline.save()

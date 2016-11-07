@@ -41,10 +41,7 @@ INSTALLED_APPS = [
     'tastypie',
     'simple_app',
     'PIL',
-    'forum',
     'point',
-    # 'lxml',
-    # 'defusedxml',
 ]
 JET_DEFAULT_THEME = 'green'
 

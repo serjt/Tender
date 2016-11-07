@@ -20,7 +20,6 @@ from django.conf import settings
 from tastypie.api import Api
 from simple_app.api import *
 from point.api import *
-from forum.api import *
 
 v1_api = Api(api_name='v1')
 v1_api.register(NewsResource())
@@ -30,20 +29,23 @@ v1_api.register(HotlineResource())
 v1_api.register(FaqResource())
 v1_api.register(EmbassyResource())
 v1_api.register(ConsulateResource())
-v1_api.register(UserResource())
-v1_api.register(CommentResource())
-v1_api.register(QuestionResource())
-v1_api.register(StoryResource())
-v1_api.register(StoryCommentResource())
-
+v1_api.register(CountryResource())
+v1_api.register(CountriesResource())
+v1_api.register(CountryDiasporaResource())
+v1_api.register(RFResource())
+v1_api.register(CountryEAESResource())
+v1_api.register(RulesOfIncomingResource())
+v1_api.register(RulesOfIncomingResource1())
+v1_api.register(RulesOfIncomingResource2())
+v1_api.register(RulesOfIncomingResource3())
 
 urlpatterns = [
     url(r'^jet/', include('jet.urls', 'jet')),
     url(r'^admin/', include(admin.site.urls)),
     url(r'^redactor/', include('redactor.urls')),
     url(r'^api/', include(v1_api.urls)),
-    url(r'^static/(?P<path>.*)$','django.views.static.serve',{'document_root':settings.STATIC_ROOT}),
-    url(r'^media/(?P<path>.*)$','django.views.static.serve',{'document_root':settings.MEDIA_ROOT}),
+    url(r'^static/(?P<path>.*)$', 'django.views.static.serve', {'document_root': settings.STATIC_ROOT}),
+    url(r'^media/(?P<path>.*)$', 'django.views.static.serve', {'document_root': settings.MEDIA_ROOT}),
 ]
 
 if settings.DEBUG:

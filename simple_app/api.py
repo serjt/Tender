@@ -9,49 +9,102 @@ class NewsResource(ModelResource):
         queryset = News.objects.all()
         resource_name = 'news'
         filtering = {
-            'title_ru':ALL
+            'title_ru': ALL
         }
 
 
-class RulesOfIncomingKyResource(ModelResource):
+# class RulesOfIncomingKyResource(ModelResource):
+#     class Meta:
+#         queryset = RulesOfIncomingKy.objects.all()
+#         resource_name = 'rules_of_incoming_ky'
+
+class CountryEAESResource(ModelResource):
     class Meta:
-        queryset = RulesOfIncomingKy.objects.all()
-        resource_name = 'rules_of_incoming_ky'
+        queryset = Country.objects.all()
+        resource_name = 'country_eaes'
+        filtering = {
+            'id': ALL_WITH_RELATIONS,
+            'country': ALL
+
+        }
 
 
 class RulesOfIncomingResource(ModelResource):
-    translit = fields.ToOneField(RulesOfIncomingKyResource, 'translit', full=True, null=True)
+    country = fields.ForeignKey(CountryEAESResource, 'country', full=True, null=True)
+
+    class Meta:
+        queryset = RulesOfIncomingEAES.objects.all()
+        authorization = Authorization()
+        resource_name = 'rules_of_incoming_eaes'
+
+        filtering = {
+            'country': ALL_WITH_RELATIONS
+        }
+
+
+class CountryResource(ModelResource):
+    class Meta:
+        queryset = CountryAll.objects.all()
+        resource_name = 'country'
+        filtering = {
+            'id': ALL_WITH_RELATIONS,
+            'country': ALL
+
+        }
+
+
+class RulesOfIncomingResource1(ModelResource):
+    country = fields.ForeignKey(CountryResource, 'country', full=True, null=True)
 
     class Meta:
         queryset = RulesOfIncoming.objects.all()
         authorization = Authorization()
         resource_name = 'rules_of_incoming'
 
+        filtering = {
+            'country': ALL_WITH_RELATIONS
+        }
 
-class RulesOfMigrationKyResource(ModelResource):
+
+class CountriesResource(ModelResource):
     class Meta:
-        queryset = RulesOfMigrationKy.objects.all()
-        resource_name = 'rules_of_migration_ky'
+        queryset = Countries.objects.all()
+        resource_name = 'country_employment'
+        filtering = {
+            'id': ALL_WITH_RELATIONS,
+            'country': ALL
+
+        }
+
+
+class RulesOfIncomingResource2(ModelResource):
+    country = fields.ForeignKey(CountriesResource, 'country', full=True, null=True)
+
+    class Meta:
+        queryset = Employment.objects.all()
+        authorization = Authorization()
+        resource_name = 'employment'
+
+        filtering = {
+            'country': ALL_WITH_RELATIONS
+        }
 
 
 class RulesOfMigrationResource(ModelResource):
-    translit = fields.ToOneField(RulesOfMigrationKyResource, 'translit', full=True, null=True)
-
     class Meta:
         queryset = RulesOfMigration.objects.all()
         authorization = Authorization()
-        resource_name = 'rules_of_migration'
+        resource_name = 'human_traffic'
 
 
-class HotlineKyResource(ModelResource):
+class RFResource(ModelResource):
     class Meta:
-        queryset = HotlineKy.objects.all()
-        resource_name = 'hotline_ky'
+        queryset = RF.objects.all()
+        authorization = Authorization()
+        resource_name = 'rf'
 
 
 class HotlineResource(ModelResource):
-    translit = fields.ToOneField(HotlineKyResource, 'translit', full=True, null=True)
-
     class Meta:
         queryset = Hotline.objects.all()
         authorization = Authorization()

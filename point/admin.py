@@ -1,6 +1,19 @@
 from django.contrib import admin
 from .models import Embassy,Consulate
+from .models import CountriesAll,Diaspora
 # Register your models here.
+
+
+class DiasporaInline(admin.StackedInline):
+    model = Diaspora
+    extra = 1
+
+
+class CountriesDiasporaAdmin(admin.ModelAdmin):
+    class Meta:
+        model = CountriesAll
+    list_display = 'country'.split()
+    inlines = [DiasporaInline]
 
 
 class ConsultInline(admin.StackedInline):
@@ -15,3 +28,4 @@ class EmbassyAdmin(admin.ModelAdmin):
     inlines = [ConsultInline]
 
 admin.site.register(Embassy,EmbassyAdmin)
+admin.site.register(CountriesAll, CountriesDiasporaAdmin)
