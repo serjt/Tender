@@ -199,7 +199,7 @@ class RF(models.Model):
 class FAQ(models.Model):
     class Meta:
         verbose_name = 'вопрос и ответ'
-        verbose_name_plural = 'Вопросы и ответы'
+        verbose_name_plural = 'Часто задаваемые вопросы'
 
     question_ru = models.TextField(verbose_name='Вопрос')
     answer_ru = models.TextField(verbose_name='Ответ')

@@ -17,8 +17,13 @@ class NewsAdmin(admin.ModelAdmin):
 
 
 class RulesOfEAESAdmin(admin.ModelAdmin):
-    list_display = 'country'.split()
+    list_display = 'country icon'.split()
     inlines = [RulesOfEAESCountry]
+
+    def icon(self, obj):
+        return '<img src="%s" style = "width:50px; height=50px;" />' % obj.image.url
+
+    icon.allow_tags = True
 
 
 class RulesOfIncomingInline(admin.StackedInline):
@@ -31,8 +36,13 @@ class RulesOfIncomingAdmin(admin.ModelAdmin):
     class Meta:
         model = CountryAll
 
-    list_display = 'country'.split()
+    list_display = 'country icon'.split()
     inlines = [RulesOfIncomingInline]
+
+    def icon(self, obj):
+        return '<img src="%s" style = "width:50px; height=50px;" />' % obj.image.url
+
+    icon.allow_tags = True
 
 
 class EmploymentInline(admin.StackedInline):
@@ -44,8 +54,13 @@ class CountriesAdmin(admin.ModelAdmin):
     class Meta:
         model = Countries
 
-    list_display = 'country'.split()
+    list_display = 'country icon'.split()
     inlines = [EmploymentInline]
+
+    def icon(self, obj):
+        return '<img src="%s" style = "width:50px; height=50px;" />' % obj.image.url
+
+    icon.allow_tags = True
 
 
 class FAQinline(admin.StackedInline):
@@ -69,14 +84,38 @@ class HotlineAdmin(admin.StackedInline):
 
 
 class CountryAdmin(admin.ModelAdmin):
-    list_display = 'country image'.split()
+    list_display = 'country image_img'.split()
+
+    def image_img(self, obj):
+        return '<img src="%s" style = "width:50px; height=50px;" />' % obj.image.url
+
+    image_img.allow_tags = True
     inlines = [HotlineAdmin]
+
+
+class RfAdmin(admin.ModelAdmin):
+    list_display = 'icon title_ru'.split()
+
+    def icon(self, obj):
+        return '<img src="%s" style = "width:50px; height=50px;" />' % obj.image.url
+
+    icon.allow_tags = True
+
+
+class RulesOfMigationAdmin(admin.ModelAdmin):
+    list_display = 'icon title_ru'.split()
+
+    def icon(self, obj):
+        return '<img src="%s" style = "width:50px; height=50px;" />' % obj.image.url
+
+    icon.allow_tags = True
+
 
 admin.site.register(Country, RulesOfEAESAdmin)
 admin.site.register(Countries, CountriesAdmin)
 admin.site.register(CountryAll, RulesOfIncomingAdmin)
 admin.site.register(News, NewsAdmin)
 admin.site.register(FAQ, FAQAdmin)
-admin.site.register(CountryHotline,CountryAdmin)
-admin.site.register(RulesOfMigration)
-admin.site.register(RF)
+admin.site.register(CountryHotline, CountryAdmin)
+admin.site.register(RulesOfMigration, RulesOfMigationAdmin)
+admin.site.register(RF, RfAdmin)
