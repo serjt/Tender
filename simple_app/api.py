@@ -104,11 +104,27 @@ class RFResource(ModelResource):
         resource_name = 'rf'
 
 
+class CountryHotlineResource(ModelResource):
+    class Meta:
+        queryset = CountryHotline.objects.all()
+        resource_name = 'country_hotline'
+        filtering = {
+            'id': ALL_WITH_RELATIONS,
+            'country': ALL
+        }
+
+
 class HotlineResource(ModelResource):
+
+    country = fields.ForeignKey(CountryHotlineResource, 'country', full=True, null=True)
+
     class Meta:
         queryset = Hotline.objects.all()
         authorization = Authorization()
         resource_name = 'hotline'
+        filtering = {
+            'country': ALL_WITH_RELATIONS
+        }
 
 
 class FaqKyResource(ModelResource):

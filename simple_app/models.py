@@ -227,13 +227,24 @@ class FAQky(models.Model):
         faq.save()
 
 
+class CountryHotline(models.Model):
+    class Meta:
+        verbose_name = 'горячую линию'
+        verbose_name_plural = 'Горячие линии'
+
+    country = models.CharField(max_length=100, verbose_name='Страна')
+    image = models.ImageField(upload_to=image_upload_to, verbose_name='Иконка')
+
+    def __unicode__(self):
+        return self.country
+
+
 class Hotline(models.Model):
     class Meta:
         verbose_name = 'горячую линию'
         verbose_name_plural = 'Горячие линии'
 
-    image = models.ImageField(upload_to=image_upload_to, verbose_name='Иконка')
-    country = models.CharField(max_length=100, verbose_name='Страна')
+    country = models.ForeignKey(CountryHotline, verbose_name='Страна')
     title_ru = models.CharField(max_length=1000, verbose_name='Название горячей линии')
     text_ru = models.TextField(verbose_name='Описание')
     phone_number = models.CharField(max_length=100, verbose_name='Номер телефона')

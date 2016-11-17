@@ -62,16 +62,21 @@ class FAQAdmin(admin.ModelAdmin):
     inlines = [FAQinline]
 
 
-class HotlineAdmin(admin.ModelAdmin):
-    list_display = '__unicode__ phone_number'.split()
-    fields = 'phone_number title_ru text_ru'.split()
+class HotlineAdmin(admin.StackedInline):
+    model = Hotline
+    fields = 'title_ru text_ru phone_number'.split()
+    extra = 1
 
+
+class CountryAdmin(admin.ModelAdmin):
+    list_display = 'country image'.split()
+    inlines = [HotlineAdmin]
 
 admin.site.register(Country, RulesOfEAESAdmin)
 admin.site.register(Countries, CountriesAdmin)
 admin.site.register(CountryAll, RulesOfIncomingAdmin)
 admin.site.register(News, NewsAdmin)
 admin.site.register(FAQ, FAQAdmin)
-admin.site.register(Hotline, HotlineAdmin)
+admin.site.register(CountryHotline,CountryAdmin)
 admin.site.register(RulesOfMigration)
 admin.site.register(RF)

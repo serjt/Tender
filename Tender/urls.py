@@ -38,6 +38,7 @@ v1_api.register(RulesOfIncomingResource())
 v1_api.register(RulesOfIncomingResource1())
 v1_api.register(RulesOfIncomingResource2())
 v1_api.register(RulesOfIncomingResource3())
+v1_api.register(CountryHotlineResource())
 
 urlpatterns = [
     url(r'^jet/', include('jet.urls', 'jet')),

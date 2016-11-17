@@ -51,7 +51,7 @@ class Consulate(models.Model):
 class CountriesAll(models.Model):
     class Meta:
         verbose_name = 'диаспору'
-        verbose_name_plural = 'Диаспора'
+        verbose_name_plural = 'Диаспоры'
 
     country = models.CharField(max_length=100, verbose_name='Страна')
     image = models.ImageField(upload_to=image_upload_to, verbose_name='Иконка')
@@ -63,7 +63,7 @@ class CountriesAll(models.Model):
 class Diaspora(models.Model):
     class Meta:
         verbose_name = 'диаспору'
-        verbose_name_plural = 'Диаспора'
+        verbose_name_plural = 'Диаспоры'
 
     country = models.ForeignKey(CountriesAll, null=True, verbose_name='Страна')
     manager = models.CharField(max_length=1000, verbose_name='Ф.И.О.')
