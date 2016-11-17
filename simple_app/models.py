@@ -17,7 +17,11 @@ class News(models.Model):
         verbose_name_plural = 'Новости'
 
     title_ru = models.CharField(max_length=1000, verbose_name='Заголовок')
-    text_ru = models.TextField(verbose_name='Текст')
+    text_ru = RedactorField(verbose_name='Текст',
+                            upload_to=image_upload_to,
+                            redactor_options={'buttons': ['image'],},
+                            allow_image_upload=True,
+                            allow_file_upload=True)
     created_at = models.DateTimeField(auto_now_add=True, verbose_name='Дата создания')
     updated_at = models.DateTimeField(auto_now=True, verbose_name='Дата изменения')
 
