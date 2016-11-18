@@ -31,6 +31,7 @@ ALLOWED_HOSTS = ['*']
 JET_SIDE_MENU_COMPACT = True
 INSTALLED_APPS = [
     'jet',
+    'newapp',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',

@@ -19,6 +19,7 @@ from django.conf.urls.static import static
 from django.conf import settings
 from tastypie.api import Api
 from simple_app.api import *
+from newapp.api import RegionResource,NkoResource
 from point.api import *
 
 v1_api = Api(api_name='v1')
@@ -39,11 +40,14 @@ v1_api.register(RulesOfIncomingResource1())
 v1_api.register(RulesOfIncomingResource2())
 v1_api.register(RulesOfIncomingResource3())
 v1_api.register(CountryHotlineResource())
+v1_api.register(RegionResource())
+v1_api.register(NkoResource())
 
 urlpatterns = [
     url(r'^jet/', include('jet.urls', 'jet')),
     url(r'^admin/', include(admin.site.urls)),
     url(r'^redactor/', include('redactor.urls')),
+    url(r'^blacklist/', 'simple_app.views.check_black_list'),
     url(r'^api/', include(v1_api.urls)),
     url(r'^static/(?P<path>.*)$', 'django.views.static.serve', {'document_root': settings.STATIC_ROOT}),
     url(r'^media/(?P<path>.*)$', 'django.views.static.serve', {'document_root': settings.MEDIA_ROOT}),
