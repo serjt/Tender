@@ -10,6 +10,10 @@ from simple_app.models import image_upload_to
 
 
 class Region(models.Model):
+    class Meta:
+        verbose_name = 'НКО'
+        verbose_name_plural = 'НКО'
+
     name = models.CharField(max_length=1000, verbose_name='Область')
 
     def __unicode__(self):
