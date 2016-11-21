@@ -4,9 +4,9 @@ from post import find_data
 
 
 def check_black_list(request):
-    fio = request.POST.get('fio')
-    day = request.POST.get('day')
-    month = request.POST.get('month')
-    year = request.POST.get('year')
+    fio = request.GET.get('fio')
+    day = request.GET.get('day')
+    month = request.GET.get('month')
+    year = request.GET.get('year')
 
     return JsonResponse(dict(result=find_data(fio, day, month, year)))
