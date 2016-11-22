@@ -38,9 +38,14 @@ class ConsultInline(admin.StackedInline):
 
 
 class EmbassyAdmin(admin.ModelAdmin):
-    list_display = '__unicode__ phone_number address'.split()
-    fields = 'country phone_number site address fax'.split()
+    list_display = 'icon phone_number address'.split()
+    fields = 'country image phone_number site address fax'.split()
     inlines = [ConsultInline]
+
+    def icon(self, obj):
+        return '<img src="%s" style = "width:50px; height=50px;" />' % obj.image.url
+
+    icon.allow_tags = True
 
 
 admin.site.register(Embassy, EmbassyAdmin)

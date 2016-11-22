@@ -15,7 +15,7 @@ class Embassy(models.Model):
         verbose_name = 'посольство'
         verbose_name_plural = 'Посольства'
         ordering = 'country'.split()
-
+    image = models.ImageField(upload_to=image_upload_to, verbose_name='Иконка',null=True)
     country = models.CharField(max_length=100, verbose_name='Страна')
     phone_number = models.CharField(max_length=100, verbose_name='Номер телефона')
     phone_number_1 = models.CharField(max_length=100, verbose_name='Экстра номер 1', null=True, blank=True)
