@@ -15,7 +15,7 @@ class News(models.Model):
     class Meta:
         verbose_name = 'новость'
         verbose_name_plural = 'Новости'
-    image = models.ImageField(upload_to=image_upload_to,verbose_name='Картинка',null=True)
+    image = models.ImageField(upload_to=image_upload_to,verbose_name='Картинка',null=True,blank=True)
     title_ru = models.CharField(max_length=1000, verbose_name='Заголовок')
     text_ru = RedactorField(verbose_name='Текст',
                             upload_to=image_upload_to,
