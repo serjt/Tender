@@ -37,6 +37,7 @@ class Country(models.Model):
     class Meta:
         verbose_name = 'правило пребывания в ЕАЭС'
         verbose_name_plural = 'Правила пребывания в ЕАЭС'
+        ordering = ['country']
 
     country = models.CharField(max_length=100, verbose_name='Страна')
     image = models.ImageField(upload_to=image_upload_to, verbose_name='Иконка')
@@ -72,6 +73,7 @@ class CountryAll(models.Model):
     class Meta:
         verbose_name = 'правило пребывания'
         verbose_name_plural = 'Правила пребывания'
+        ordering = ['country']
 
     country = models.CharField(max_length=100, verbose_name='Страна')
     image = models.ImageField(upload_to=image_upload_to, verbose_name='Иконка')
@@ -107,6 +109,7 @@ class Countries(models.Model):
     class Meta:
         verbose_name = 'Трудоустройство'
         verbose_name_plural = 'Трудоустройство'
+        ordering = ['country']
 
     country = models.CharField(max_length=100, verbose_name='Страна')
     image = models.ImageField(upload_to=image_upload_to, verbose_name='Иконка')

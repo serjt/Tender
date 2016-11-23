@@ -13,6 +13,7 @@ class Region(models.Model):
     class Meta:
         verbose_name = 'НКО'
         verbose_name_plural = 'НКО'
+        ordering = ['name']
 
     name = models.CharField(max_length=1000, verbose_name='Область')
 

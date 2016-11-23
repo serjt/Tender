@@ -16,7 +16,7 @@ class Embassy(models.Model):
         verbose_name_plural = 'Посольства'
         ordering = 'country'.split()
 
-    image = models.ImageField(upload_to=image_upload_to, verbose_name='Иконка', null=True,blank=True)
+    image = models.ImageField(upload_to=image_upload_to, verbose_name='Иконка', null=True, blank=True)
     country = models.CharField(max_length=100, verbose_name='Страна')
     phone_number = models.CharField(max_length=100, verbose_name='Номер телефона')
     phone_number_1 = models.CharField(max_length=100, verbose_name='Экстра номер 1', null=True, blank=True)
@@ -53,6 +53,7 @@ class CountriesAll(models.Model):
     class Meta:
         verbose_name = 'диаспору'
         verbose_name_plural = 'Диаспоры'
+        ordering = ['country']
 
     country = models.CharField(max_length=100, verbose_name='Страна')
     image = models.ImageField(upload_to=image_upload_to, verbose_name='Иконка')
@@ -65,6 +66,7 @@ class Diaspora(models.Model):
     class Meta:
         verbose_name = 'диаспору'
         verbose_name_plural = 'Диаспоры'
+        ordering = ['country']
 
     country = models.ForeignKey(CountriesAll, null=True, verbose_name='Страна')
     manager = models.CharField(max_length=1000, verbose_name='Ф.И.О.')
