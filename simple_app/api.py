@@ -49,7 +49,6 @@ class CountryResource(ModelResource):
         filtering = {
             'id': ALL_WITH_RELATIONS,
             'country': ALL
-
         }
 
 

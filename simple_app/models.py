@@ -238,6 +238,7 @@ class CountryHotline(models.Model):
     class Meta:
         verbose_name = 'горячую линию'
         verbose_name_plural = 'Горячие линии'
+        ordering = 'country'.split()
 
     country = models.CharField(max_length=100, verbose_name='Страна')
     image = models.ImageField(upload_to=image_upload_to, verbose_name='Иконка')
