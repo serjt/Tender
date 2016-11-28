@@ -38,13 +38,13 @@ class CountriesDiasporaAdmin(admin.ModelAdmin):
 
 class ConsultInline(admin.StackedInline):
     model = Consulate
-    fields = 'region address phone_number'.split()
+    fields = 'region address map_link phone_number'.split()
     extra = 1
 
 
 class EmbassyAdmin(admin.ModelAdmin):
     list_display = 'country icon phone_number address'.split()
-    fields = 'country image phone_number site address fax'.split()
+    fields = 'country image phone_number map_link site address fax'.split()
     inlines = [ConsultInline]
 
     def icon(self, obj):
