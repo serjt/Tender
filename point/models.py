@@ -27,6 +27,7 @@ class Embassy(models.Model):
     email = models.EmailField(max_length=100, verbose_name='Электронная почта')
     site = models.CharField(null=True, blank=True, verbose_name='Сайт', max_length=100)
     address = models.TextField(verbose_name='Адрес')
+    map_link = models.TextField(verbose_name="Ссылка на карту",null=True,blank=True)
 
     def __unicode__(self):
         return self.country
@@ -41,6 +42,7 @@ class Consulate(models.Model):
     embassy = models.ForeignKey(Embassy)
     region = models.CharField(max_length=1000, verbose_name='Регион')
     address = models.TextField(verbose_name='Адрес')
+    map_link = models.TextField(verbose_name="Ссылка на карту",null=True,blank=True)
     phone_number = models.CharField(max_length=100, verbose_name='Номер телефона')
     phone_number_1 = models.CharField(max_length=100, verbose_name='Экстра номер 1', null=True, blank=True)
     phone_number_2 = models.CharField(max_length=100, verbose_name='Экстра номер 2', null=True, blank=True)
@@ -74,6 +76,28 @@ class Diaspora(models.Model):
     created_at = models.DateTimeField(auto_now_add=True, verbose_name='Дата создания')
     updated_at = models.DateTimeField(auto_now=True, verbose_name='Дата изменения')
     address = models.TextField(verbose_name='Адрес', null=True, blank=True)
+    map_link = models.TextField(verbose_name="Ссылка на карту",null=True,blank=True)
+    phone_number = models.CharField(max_length=100, verbose_name='Номер телефона')
+    email = models.EmailField(verbose_name='E-mail', null=True, blank=True)
+    city = models.CharField(verbose_name='Город', max_length=100, null=True, blank=True)
+
+    def __unicode__(self):
+        return self.country.country
+
+
+class DiasporaKG(models.Model):
+    class Meta:
+        verbose_name = 'диаспора'
+        verbose_name_plural = 'Диаспоралар'
+        ordering = ['country']
+
+    country = models.ForeignKey(CountriesAll, null=True, verbose_name='Страна')
+    manager = models.CharField(max_length=1000, verbose_name='Ф.И.О.')
+    place = models.TextField(verbose_name='Место работы')
+    created_at = models.DateTimeField(auto_now_add=True, verbose_name='Дата создания')
+    updated_at = models.DateTimeField(auto_now=True, verbose_name='Дата изменения')
+    address = models.TextField(verbose_name='Адрес', null=True, blank=True)
+    map_link = models.TextField(verbose_name="Ссылка на карту",blank=True, null=True)
     phone_number = models.CharField(max_length=100, verbose_name='Номер телефона')
     email = models.EmailField(verbose_name='E-mail', null=True, blank=True)
     city = models.CharField(verbose_name='Город', max_length=100, null=True, blank=True)

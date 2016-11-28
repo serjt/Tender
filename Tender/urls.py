@@ -19,29 +19,37 @@ from django.conf.urls.static import static
 from django.conf import settings
 from tastypie.api import Api
 from simple_app.api import *
-from newapp.api import RegionResource,NkoResource
+from newapp.api import RegionResource,NkoResource, NkoResourceKg
 from point.api import *
 
 v1_api = Api(api_name='v1')
 v1_api.register(NewsResource())
+v1_api.register(NewsKgResource())
 v1_api.register(RulesOfIncomingResource())
+v1_api.register(RulesOfIncomingResourceKg())
 v1_api.register(RulesOfMigrationResource())
+v1_api.register(RulesOfMigrationResourceKg())
 v1_api.register(HotlineResource())
+v1_api.register(HotlineResourceKg())
 v1_api.register(FaqResource())
+v1_api.register(FaqKgResource())
 v1_api.register(EmbassyResource())
 v1_api.register(ConsulateResource())
 v1_api.register(CountryResource())
 v1_api.register(CountriesResource())
 v1_api.register(CountryDiasporaResource())
 v1_api.register(RFResource())
+v1_api.register(RFKGResource())
 v1_api.register(CountryEAESResource())
-v1_api.register(RulesOfIncomingResource())
 v1_api.register(RulesOfIncomingResource1())
+v1_api.register(RulesOfIncomingResource1Kg())
 v1_api.register(RulesOfIncomingResource2())
 v1_api.register(RulesOfIncomingResource3())
 v1_api.register(CountryHotlineResource())
 v1_api.register(RegionResource())
 v1_api.register(NkoResource())
+v1_api.register(NkoResourceKg())
+v1_api.register(DiasporaResourceKG())
 
 urlpatterns = [
     url(r'^jet/', include('jet.urls', 'jet')),

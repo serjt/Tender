@@ -13,6 +13,15 @@ class NewsResource(ModelResource):
         }
 
 
+class NewsKgResource(ModelResource):
+    class Meta:
+        queryset = NewsKg.objects.all()
+        resource_name = 'news_kg'
+        filtering = {
+            'title_ru': ALL
+        }
+
+
 # class RulesOfIncomingKyResource(ModelResource):
 #     class Meta:
 #         queryset = RulesOfIncomingKy.objects.all()
@@ -42,6 +51,19 @@ class RulesOfIncomingResource(ModelResource):
         }
 
 
+class RulesOfIncomingResourceKg(ModelResource):
+    country = fields.ForeignKey(CountryEAESResource, 'country', full=True, null=True)
+
+    class Meta:
+        queryset = RulesOfIncomingEAES.objects.all()
+        authorization = Authorization()
+        resource_name = 'rules_of_incoming_eaes_kg'
+
+        filtering = {
+            'country': ALL_WITH_RELATIONS
+        }
+
+
 class CountryResource(ModelResource):
     class Meta:
         queryset = CountryAll.objects.all()
@@ -59,6 +81,19 @@ class RulesOfIncomingResource1(ModelResource):
         queryset = RulesOfIncoming.objects.all()
         authorization = Authorization()
         resource_name = 'rules_of_incoming'
+
+        filtering = {
+            'country': ALL_WITH_RELATIONS
+        }
+
+
+class RulesOfIncomingResource1Kg(ModelResource):
+    country = fields.ForeignKey(CountryResource, 'country', full=True, null=True)
+
+    class Meta:
+        queryset = RulesOfIncoming.objects.all()
+        authorization = Authorization()
+        resource_name = 'rules_of_incoming_kg'
 
         filtering = {
             'country': ALL_WITH_RELATIONS
@@ -96,11 +131,25 @@ class RulesOfMigrationResource(ModelResource):
         resource_name = 'human_traffic'
 
 
+class RulesOfMigrationResourceKg(ModelResource):
+    class Meta:
+        queryset = RulesOfMigration.objects.all()
+        authorization = Authorization()
+        resource_name = 'human_traffic_kg'
+
+
 class RFResource(ModelResource):
     class Meta:
         queryset = RF.objects.all()
         authorization = Authorization()
         resource_name = 'rf'
+
+
+class RFKGResource(ModelResource):
+    class Meta:
+        queryset = RFKG.objects.all()
+        authorization = Authorization()
+        resource_name = 'rf_kg'
 
 
 class CountryHotlineResource(ModelResource):
@@ -114,7 +163,6 @@ class CountryHotlineResource(ModelResource):
 
 
 class HotlineResource(ModelResource):
-
     country = fields.ForeignKey(CountryHotlineResource, 'country', full=True, null=True)
 
     class Meta:
@@ -126,16 +174,27 @@ class HotlineResource(ModelResource):
         }
 
 
-class FaqKyResource(ModelResource):
+class HotlineResourceKg(ModelResource):
+    country = fields.ForeignKey(CountryHotlineResource, 'country', full=True, null=True)
+
     class Meta:
-        queryset = FAQky.objects.all()
-        resource_name = 'faq_ky'
+        queryset = HotlineKG.objects.all()
+        authorization = Authorization()
+        resource_name = 'hotline_kg'
+        filtering = {
+            'country': ALL_WITH_RELATIONS
+        }
 
 
 class FaqResource(ModelResource):
-    translit = fields.ToOneField(FaqKyResource, 'translit', full=True, null=True)
-
     class Meta:
         queryset = FAQ.objects.all()
         authorization = Authorization()
         resource_name = 'faq'
+
+
+class FaqKgResource(ModelResource):
+    class Meta:
+        queryset = FAQKG.objects.all()
+        authorization = Authorization()
+        resource_name = 'faq_kg'
