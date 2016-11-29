@@ -55,7 +55,7 @@ class RulesOfIncomingResourceKg(ModelResource):
     country = fields.ForeignKey(CountryEAESResource, 'country', full=True, null=True)
 
     class Meta:
-        queryset = RulesOfIncomingEAES.objects.all()
+        queryset = RulesOfIncomingKgEAES.objects.all()
         authorization = Authorization()
         resource_name = 'rules_of_incoming_eaes_kg'
 
@@ -91,7 +91,7 @@ class RulesOfIncomingResource1Kg(ModelResource):
     country = fields.ForeignKey(CountryResource, 'country', full=True, null=True)
 
     class Meta:
-        queryset = RulesOfIncoming.objects.all()
+        queryset = RulesOfIncomingKg.objects.all()
         authorization = Authorization()
         resource_name = 'rules_of_incoming_kg'
 
@@ -133,7 +133,7 @@ class RulesOfMigrationResource(ModelResource):
 
 class RulesOfMigrationResourceKg(ModelResource):
     class Meta:
-        queryset = RulesOfMigration.objects.all()
+        queryset = RulesOfMigrationKg.objects.all()
         authorization = Authorization()
         resource_name = 'human_traffic_kg'
 

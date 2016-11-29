@@ -43,7 +43,6 @@ class NewsKg(models.Model):
     title_ru = models.CharField(max_length=1000, verbose_name='Заголовок')
     text_ru = RedactorField(verbose_name='Текст',
                             upload_to=image_upload_to,
-                            redactor_options={'buttons': ['image'],},
                             allow_image_upload=True,
                             allow_file_upload=True)
     created_at = models.DateTimeField(auto_now_add=True, verbose_name='Дата создания')
@@ -79,7 +78,6 @@ class RulesOfIncomingEAES(models.Model):
     title_ru = models.CharField(max_length=1000, verbose_name='Заголовок')
     text_ru = RedactorField(verbose_name='Текст',
                             upload_to=image_upload_to,
-                            redactor_options={'buttons': ['image'],},
                             allow_image_upload=True,
                             allow_file_upload=True)
     created_at = models.DateTimeField(auto_now_add=True, verbose_name='Дата создания')
@@ -102,7 +100,6 @@ class RulesOfIncomingKgEAES(models.Model):
     title_ru = models.CharField(max_length=1000, verbose_name='Заголовок')
     text_ru = RedactorField(verbose_name='Текст',
                             upload_to=image_upload_to,
-                            redactor_options={'buttons': ['image'],},
                             allow_image_upload=True,
                             allow_file_upload=True)
     created_at = models.DateTimeField(auto_now_add=True, verbose_name='Дата создания')
@@ -138,7 +135,6 @@ class RulesOfIncoming(models.Model):
     title_ru = models.CharField(max_length=1000, verbose_name='Заголовок')
     text_ru = RedactorField(verbose_name='Текст',
                             upload_to=image_upload_to,
-                            redactor_options={'buttons': ['image'],},
                             allow_image_upload=True,
                             allow_file_upload=True)
     created_at = models.DateTimeField(auto_now_add=True, verbose_name='Дата создания')
@@ -161,7 +157,6 @@ class RulesOfIncomingKg(models.Model):
     title_ru = models.CharField(max_length=1000, verbose_name='Заголовок')
     text_ru = RedactorField(verbose_name='Текст',
                             upload_to=image_upload_to,
-                            redactor_options={'buttons': ['image'],},
                             allow_image_upload=True,
                             allow_file_upload=True)
     created_at = models.DateTimeField(auto_now_add=True, verbose_name='Дата создания')
@@ -216,7 +211,6 @@ class RulesOfMigration(models.Model):
     title_ru = models.CharField(max_length=1000, verbose_name='Заголовок')
     text_ru = RedactorField(verbose_name='Баяндоо',
                             upload_to=image_upload_to,
-                            redactor_options={'buttons': ['image'],},
                             allow_image_upload=True,
                             allow_file_upload=True)
     created_at = models.DateTimeField(auto_now_add=True, verbose_name='Дата создания')
@@ -254,7 +248,6 @@ class RF(models.Model):
     title_ru = models.CharField(max_length=1000, verbose_name='Заголовок')
     text_ru = RedactorField(verbose_name='Баяндоо',
                             upload_to=image_upload_to,
-                            redactor_options={'buttons': ['image'],},
                             allow_image_upload=True,
                             allow_file_upload=True)
     created_at = models.DateTimeField(auto_now_add=True, verbose_name='Дата создания')
@@ -277,7 +270,6 @@ class RFKG(models.Model):
     title_ru = models.CharField(max_length=1000, verbose_name='Заголовок')
     text_ru = RedactorField(verbose_name='Баяндоо',
                             upload_to=image_upload_to,
-                            redactor_options={'buttons': ['image'],},
                             allow_image_upload=True,
                             allow_file_upload=True)
     created_at = models.DateTimeField(auto_now_add=True, verbose_name='Дата создания')
