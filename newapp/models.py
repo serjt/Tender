@@ -63,6 +63,7 @@ class NKOKG(models.Model):
     phone_number = models.CharField(max_length=100, verbose_name='Номер телефона')
     phone_number_1 = models.CharField(max_length=100, verbose_name='Экстра номер 1', null=True, blank=True)
     mail = models.CharField(max_length=100, verbose_name='e-Mail', null=True, blank=True)
+    map_link = models.TextField(verbose_name="Ссылка на карту",null=True,blank=True)
 
     def __unicode__(self):
         return self.title_ru

@@ -20,7 +20,6 @@ class News(models.Model):
     title_ru = models.CharField(max_length=1000, verbose_name='Заголовок')
     text_ru = RedactorField(verbose_name='Текст',
                             upload_to=image_upload_to,
-                            redactor_options={'buttons': ['image'],},
                             allow_image_upload=True,
                             allow_file_upload=True)
     created_at = models.DateTimeField(auto_now_add=True, verbose_name='Дата создания')
@@ -197,6 +196,7 @@ class Employment(models.Model):
     phone_number = models.CharField(max_length=100, verbose_name='Номер телефона')
     phone_number_1 = models.CharField(max_length=100, verbose_name='Экстра номер 1', null=True, blank=True)
     phone_number_2 = models.CharField(max_length=100, verbose_name='Экстра номер 2', null=True, blank=True)
+    map_link = models.TextField(verbose_name="Ссылка на карту", null=True, blank=True)
 
     def __unicode__(self):
         return self.name
@@ -229,7 +229,6 @@ class RulesOfMigrationKg(models.Model):
     title_ru = models.CharField(max_length=1000, verbose_name='Заголовок')
     text_ru = RedactorField(verbose_name='Баяндоо',
                             upload_to=image_upload_to,
-                            redactor_options={'buttons': ['image'],},
                             allow_image_upload=True,
                             allow_file_upload=True)
     created_at = models.DateTimeField(auto_now_add=True, verbose_name='Дата создания')
@@ -288,8 +287,12 @@ class FAQ(models.Model):
         verbose_name = 'вопрос и ответ'
         verbose_name_plural = 'Часто задаваемые вопросы'
 
-    question_ru = models.TextField(verbose_name='Вопрос')
-    answer_ru = models.TextField(verbose_name='Ответ')
+    question_ru = RedactorField(verbose_name='Вопрос', upload_to=image_upload_to,
+                                allow_image_upload=True,
+                                allow_file_upload=True, null=True, blank=True)
+    answer_ru = RedactorField(verbose_name='Ответ', upload_to=image_upload_to,
+                              allow_image_upload=True,
+                              allow_file_upload=True, null=True, blank=True)
     created_at = models.DateTimeField(auto_now_add=True, verbose_name='Дата создания')
     updated_at = models.DateTimeField(auto_now=True, verbose_name='Дата изменения')
 
@@ -302,8 +305,12 @@ class FAQKG(models.Model):
         verbose_name = 'суроо жооп'
         verbose_name_plural = 'Көп берилүүчү суроолор'
 
-    question_ru = models.TextField(verbose_name='Суроо')
-    answer_ru = models.TextField(verbose_name='Жооп')
+    question_ru = RedactorField(verbose_name='Суроо', upload_to=image_upload_to,
+                                allow_image_upload=True,
+                                allow_file_upload=True, null=True, blank=True)
+    answer_ru = RedactorField(verbose_name='Жооп', upload_to=image_upload_to,
+                              allow_image_upload=True,
+                              allow_file_upload=True, null=True, blank=True)
     created_at = models.DateTimeField(auto_now_add=True, verbose_name='Дата создания')
     updated_at = models.DateTimeField(auto_now=True, verbose_name='Дата изменения')
 
