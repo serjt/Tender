@@ -27,6 +27,18 @@ class NewsAdmin(admin.ModelAdmin):
     icon.allow_tags = True
 
 
+class NewsKgAdmin(admin.ModelAdmin):
+    list_display = '__unicode__ created_at updated_at'.split()
+    fields = 'title_ru image text_ru created_at updated_at'.split()
+    readonly_fields = 'created_at updated_at'.split()
+    list_filter = 'updated_at'.split()
+
+    # def icon(self, obj):
+    #     return '<img src="%s" style = "width:50px; height=50px;" />' % obj.image.url
+    #
+    # icon.allow_tags = True
+
+
 class RulesOfEAESAdmin(admin.ModelAdmin):
     list_display = 'country icon'.split()
     inlines = [RulesOfEAESCountry, RulesOfEAESCountryKG]
@@ -131,7 +143,7 @@ admin.site.register(Country, RulesOfEAESAdmin)
 admin.site.register(Countries, CountriesAdmin)
 admin.site.register(CountryAll, RulesOfIncomingAdmin)
 admin.site.register(News, NewsAdmin)
-admin.site.register(NewsKg, NewsAdmin)
+admin.site.register(NewsKg, NewsKgAdmin)
 admin.site.register(FAQ, FAQAdmin)
 admin.site.register(FAQKG, FAQAdmin)
 admin.site.register(CountryHotline, CountryAdmin)
