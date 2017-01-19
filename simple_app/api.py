@@ -6,7 +6,7 @@ from tastypie.resources import ModelResource, ALL, ALL_WITH_RELATIONS
 
 class NewsResource(ModelResource):
     class Meta:
-        queryset = News.objects.all()
+        queryset = News.objects.order_by('-updated_at')
         resource_name = 'news'
         filtering = {
             'title_ru': ALL
@@ -15,7 +15,7 @@ class NewsResource(ModelResource):
 
 class NewsKgResource(ModelResource):
     class Meta:
-        queryset = NewsKg.objects.all()
+        queryset = NewsKg.objects.order_by('-updated_at')
         resource_name = 'news_kg'
         filtering = {
             'title_ru': ALL

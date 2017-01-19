@@ -16,27 +16,33 @@ class RulesOfEAESCountryKG(admin.StackedInline):
 
 
 class NewsAdmin(admin.ModelAdmin):
-    list_display = '__unicode__ icon created_at updated_at'.split()
-    fields = 'title_ru image text_ru created_at updated_at'.split()
-    readonly_fields = 'created_at updated_at'.split()
+    list_display = '__unicode__ icon updated_at'.split()
+    fields = 'title_ru image text_ru'.split()
+    readonly_fields = 'updated_at'.split()
     list_filter = 'updated_at'.split()
 
     def icon(self, obj):
-        return '<img src="%s" style = "width:50px; height=50px;" />' % obj.image.url
+        try:
+            return '<img src="%s" style = "width:50px; height=50px;" />' % obj.image.url
+        except:
+            return '<p>No Photo</p>'
 
     icon.allow_tags = True
 
 
 class NewsKgAdmin(admin.ModelAdmin):
-    list_display = '__unicode__ created_at updated_at'.split()
-    fields = 'title_ru image text_ru created_at updated_at'.split()
-    readonly_fields = 'created_at updated_at'.split()
+    list_display = '__unicode__ updated_at icon'.split()
+    fields = 'title_ru image text_ru'.split()
+    readonly_fields = 'updated_at'.split()
     list_filter = 'updated_at'.split()
 
-    # def icon(self, obj):
-    #     return '<img src="%s" style = "width:50px; height=50px;" />' % obj.image.url
-    #
-    # icon.allow_tags = True
+    def icon(self, obj):
+        try:
+            return '<img src="%s" style = "width:50px; height=50px;" />' % obj.image.url
+        except:
+            return '<p>No Photo</p>'
+
+    icon.allow_tags = True
 
 
 class RulesOfEAESAdmin(admin.ModelAdmin):

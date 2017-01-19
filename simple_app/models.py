@@ -22,8 +22,8 @@ class News(models.Model):
                             upload_to=image_upload_to,
                             allow_image_upload=True,
                             allow_file_upload=True)
-    created_at = models.DateTimeField(auto_now_add=True, verbose_name='Дата создания')
-    updated_at = models.DateTimeField(auto_now=True, verbose_name='Дата изменения')
+    updated_at = models.DateTimeField(null=True, verbose_name='Дата изменения',
+                                      blank=True,auto_now=True)
 
     def __unicode__(self):
         return self.title_ru
@@ -44,8 +44,8 @@ class NewsKg(models.Model):
                             upload_to=image_upload_to,
                             allow_image_upload=True,
                             allow_file_upload=True)
-    created_at = models.DateTimeField(auto_now_add=True, verbose_name='Дата создания')
-    updated_at = models.DateTimeField(auto_now=True, verbose_name='Дата изменения')
+    updated_at = models.DateTimeField(auto_now=True,
+                                      null=True, verbose_name='Дата изменения', blank=True)
 
     def __unicode__(self):
         return self.title_ru
@@ -53,6 +53,9 @@ class NewsKg(models.Model):
     @staticmethod
     def autocomplete_search_fields():
         return 'title_ru'
+
+    def image_url(self):
+        print self.image.path
 
 
 class Country(models.Model):
